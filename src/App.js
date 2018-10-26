@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+
+import Recorder from './Components/Recorder';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
         <h1>Recording in React</h1>
+        <Recorder />
       </div>
     );
   }

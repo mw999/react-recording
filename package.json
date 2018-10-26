@@ -6,7 +6,7 @@
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
     "react-scripts": "2.0.5",
-    "recorder.js": "^1.2.2"
+    "recorder-js": "^1.0.7"
   },
   "scripts": {
     "start": "react-scripts start",
