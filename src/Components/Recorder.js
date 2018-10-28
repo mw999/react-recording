@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import RecorderJS from 'recorder-js';
 
-import { recordAudio, exportBuffer } from '../utilities/audio';
+import { getAudioStream, exportBuffer } from '../utilities/audio';
 
 class Recorder extends Component {
   constructor(props) {
@@ -19,16 +19,17 @@ class Recorder extends Component {
     let stream;
 
     try {
-      stream = await recordAudio();
+      stream = await getAudioStream();
     } catch (error) {
       // Users browser doesn't support audio.
+      // Add your handler here.
       console.log(error);
     }
 
     this.setState({ stream });
   }
 
-  async startRecord() {
+  startRecord() {
     const { stream } = this.state;
 
     const audioContext = new (window.AudioContext || window.webkitAudioContext)();
@@ -46,15 +47,14 @@ class Recorder extends Component {
     );
   }
 
-  stopRecord() {
+  async stopRecord() {
     const { recorder } = this.state;
 
-    recorder.stop().then(({ buffer }) => {
-      const audio = exportBuffer(buffer[0]);
+    const { buffer } = await recorder.stop()
+    const audio = exportBuffer(buffer[0]);
 
-      // Process the audio here.
-      console.log(audio);
-    });
+    // Process the audio here.
+    console.log(audio);
 
     this.setState({
       recording: false

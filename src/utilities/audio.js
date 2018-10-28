@@ -3,7 +3,7 @@
  *
  * https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia#Using_the_new_API_in_older_browsers
  */
-function recordAudio() {
+function getAudioStream() {
   // Older browsers might not implement mediaDevices at all, so we set an empty object first
   if (navigator.mediaDevices === undefined) {
     navigator.mediaDevices = {};
@@ -131,4 +131,4 @@ function exportBuffer(recBuffer) {
   return audioBlob;
 }
 
-export { recordAudio, exportBuffer };
+export { getAudioStream, exportBuffer };
